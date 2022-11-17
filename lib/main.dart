@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
-import 'src/presentation/views/splash_screen.dart';
+import 'package:get/get.dart';
+
+import 'src/core/utils/assets_constants.dart';
+import 'src/config/dependencies.dart';
+import 'src/config/routes/routes.dart';
+import 'src/core/utils/string_constants.dart';
 
 void main() {
+  Dependencies().onInit();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const SpoonacularApp());
 }
 
 class SpoonacularApp extends StatelessWidget {
   const SpoonacularApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      initialRoute: StringConstants.splashScreenRoute,
+      routes: Routes.getRoutes(),
+      theme: ThemeData(
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+              fontFamily: Assets.fontFamily,
+            ),
+      ),
     );
   }
 }
