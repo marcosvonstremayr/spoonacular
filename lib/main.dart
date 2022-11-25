@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/config/scroll_behaviour.dart';
 import 'src/core/utils/assets_constants.dart';
 import 'src/config/dependencies.dart';
 import 'src/config/routes/routes.dart';
@@ -21,6 +22,7 @@ class SpoonacularApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: StringConstants.splashScreenRoute,
       routes: Routes.getRoutes(),
+      scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.white,

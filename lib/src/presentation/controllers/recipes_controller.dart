@@ -7,7 +7,9 @@ import '../../domain/usecases/get_recipes_usecase.dart';
 class RecipesController extends GetxController
     with StateMixin<List<RecipeModel>>
     implements IRecipesController {
+
   final GetRecipesUseCase _getRecipesUseCase = Get.find<GetRecipesUseCase>();
+
   RxList<RecipeModel> recipes = RxList<RecipeModel>();
 
   @override

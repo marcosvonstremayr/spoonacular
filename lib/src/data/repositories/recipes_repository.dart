@@ -3,7 +3,9 @@ import 'package:get/get.dart' hide Response;
 
 import '../../domain/repositories/i_recipe_repository.dart';
 import '../datasources/remote/api_service.dart';
+import '../models/ingredient_model.dart';
 import '../models/recipe_model.dart';
+import '../models/similar_recipe_model.dart';
 
 class RecipesRepository implements IRecipesRepository {
   final ApiService _apiService = Get.find<ApiService>();
@@ -22,5 +24,46 @@ class RecipesRepository implements IRecipesRepository {
       }
     }
     return recipes;
+  }
+
+  @override
+  Future<List<IngredientModel>> getRecipeIngredients(
+      {required String endpoint}) async {
+    List<IngredientModel> ingredients = <IngredientModel>[];
+    Response<dynamic> apiResponse =
+        await _apiService.getApiResponse(endpoint: endpoint);
+    List<dynamic> ingredientsList = apiResponse.data['ingredients'];
+    for (int i = 0; i < ingredientsList.length; i++) {
+      try {
+        ingredients.add(IngredientModel.fromJson(ingredientsList[i]));
+      } catch (e) {
+        continue;
+      }
+    }
+    return ingredients;
+  }
+
+  @override
+  Future<String> getRecipeNutritionLabel({required String endpoint}) async {
+    Response<dynamic> apiResponse =
+        await _apiService.getApiResponse(endpoint: endpoint);
+    return apiResponse.data;
+  }
+
+  @override
+  Future<List<SimilarRecipeModel>> getSimilarRecipes(
+      {required String endpoint}) async {
+    List<SimilarRecipeModel> similarRecipes = <SimilarRecipeModel>[];
+    Response<dynamic> apiResponse =
+        await _apiService.getApiResponse(endpoint: endpoint);
+    List<dynamic> similarRecipesList = apiResponse.data;
+    for (int i = 0; i < similarRecipesList.length; i++) {
+      try {
+        similarRecipes.add(SimilarRecipeModel.fromJson(similarRecipesList[i]));
+      } catch (e) {
+        continue;
+      }
+    }
+    return similarRecipes;
   }
 }

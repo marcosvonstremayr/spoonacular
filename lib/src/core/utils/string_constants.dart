@@ -12,4 +12,9 @@ abstract class StringConstants {
   static const String homeRoute = '/home';
   static const String searchRoute = '/search';
   static const String splashScreenRoute = '/';
+  static const String recipeDetailRoute = '/detail';
+  static const String ingredientsEndpoint = 'Ingredients';
+  static const String nutritionLabelEndpoint = 'Nutrition Label';
+  static const String similarRecipesEndpoint = 'Similar';
+  static const String idReplacement = '{id}';
 }

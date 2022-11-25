@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/utils/assets_constants.dart';
 import '../../core/utils/dimensions_constants.dart';
+import '../../core/utils/string_constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -24,7 +26,6 @@ class CustomAppBar extends StatelessWidget {
   static const String appBarSearchTitle = 'Search';
   static const String appBarTitle = 'SPOONACULAR';
 
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -35,8 +36,7 @@ class CustomAppBar extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.all(appBarMargin),
           padding: const EdgeInsets.all(appBarPadding),
-          height: MediaQuery.of(context).size.height *
-              appBarHeightMultiplier,
+          height: MediaQuery.of(context).size.height * appBarHeightMultiplier,
           decoration: BoxDecoration(
             color: Colors.grey
                 .withOpacity(Dimensions.containerBackgroundColorOpacity),
@@ -77,26 +77,29 @@ class CustomAppBar extends StatelessWidget {
                       : const SizedBox.shrink(),
                 ],
               ),
-              Row(
-                children: <Widget>[
-                  constraints.maxWidth > Dimensions.mobileMaxWidth
-                      ? const Text(
-                          appBarSearchTitle,
-                          style: TextStyle(
-                            fontSize: appBarSearchFontSize,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: appBarSearchTextFontSize,
+              InkWell(
+                child: Row(
+                  children: <Widget>[
+                    constraints.maxWidth > Dimensions.mobileMaxWidth
+                        ? const Text(
+                            appBarSearchTitle,
+                            style: TextStyle(
+                              fontSize: appBarSearchFontSize,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: appBarSearchTextFontSize,
+                      ),
+                      child: Image.asset(
+                        Assets.searchIconPath,
+                        height: appBarSearchIconHeight,
+                      ),
                     ),
-                    child: Image.asset(
-                      Assets.searchIconPath,
-                      height: appBarSearchIconHeight,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
+                onTap: () => Get.toNamed(StringConstants.searchRoute),
               )
             ],
           ),

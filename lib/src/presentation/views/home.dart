@@ -40,6 +40,8 @@ class HomePage extends GetView<RecipesController> {
   static const double containerShadowBlur = 5;
   static const double containerShadowSpread = 3;
   static const double carouselViewportFractionTablet = 0.8;
+  static const int expandedFlex = 2;
+  static const double loaderBackgroundSizeMultiplier = 0.25;
 
   static const String recipeContainerSummaryTitle = 'Summary';
   static const String htmlStyleTag = '#';
@@ -59,7 +61,10 @@ class HomePage extends GetView<RecipesController> {
           ),
         ),
         child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
+          builder: (
+            BuildContext context,
+            BoxConstraints constraints,
+          ) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -89,28 +94,26 @@ class HomePage extends GetView<RecipesController> {
                           int index,
                           int pageViewIndex,
                         ) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: carouselHorizontalPadding,
-                              vertical: carouselVerticalPadding,
-                            ),
+                          return InkWell(
                             child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: carouselHorizontalPadding,
+                                vertical: carouselVerticalPadding,
+                              ),
                               height: Get.height,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
                                   Dimensions.containerBorderRadius,
                                 ),
                                 color: Colors.grey.withOpacity(
-                                  Dimensions
-                                      .containerBackgroundColorOpacity,
+                                  Dimensions.containerBackgroundColorOpacity,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(
                                       containerShadowOpacity,
                                     ),
-                                    spreadRadius:
-                                        containerShadowSpread,
+                                    spreadRadius: containerShadowSpread,
                                     blurRadius: containerShadowBlur,
                                   )
                                 ],
@@ -120,7 +123,7 @@ class HomePage extends GetView<RecipesController> {
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Expanded(
-                                    flex: 2,
+                                    flex: expandedFlex,
                                     child: Stack(
                                       children: <Widget>[
                                         Container(
@@ -132,8 +135,7 @@ class HomePage extends GetView<RecipesController> {
                                               fit: BoxFit.cover,
                                             ),
                                             borderRadius: BorderRadius.circular(
-                                              Dimensions
-                                                  .containerBorderRadius,
+                                              Dimensions.containerBorderRadius,
                                             ),
                                           ),
                                         ),
@@ -147,11 +149,13 @@ class HomePage extends GetView<RecipesController> {
                                               Text(
                                                 recipes[index].title,
                                                 style: TextStyle(
-                                                  fontSize: recipeContainerTitleFontSize,
+                                                  fontSize:
+                                                      recipeContainerTitleFontSize,
                                                   foreground: Paint()
                                                     ..style =
                                                         PaintingStyle.stroke
-                                                    ..strokeWidth = recipeContainerTitleStroke
+                                                    ..strokeWidth =
+                                                        recipeContainerTitleStroke
                                                     ..color = Colors.black,
                                                 ),
                                               ),
@@ -159,7 +163,8 @@ class HomePage extends GetView<RecipesController> {
                                                 recipes[index].title,
                                                 style: const TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: recipeContainerTitleFontSize,
+                                                  fontSize:
+                                                      recipeContainerTitleFontSize,
                                                 ),
                                               ),
                                             ],
@@ -177,7 +182,8 @@ class HomePage extends GetView<RecipesController> {
                                       children: <Widget>[
                                         Image.asset(
                                           Assets.timerIconPath,
-                                          height: recipeCookingMinutesImageHeight,
+                                          height:
+                                              recipeCookingMinutesImageHeight,
                                         ),
                                         Text(
                                           recipes[index]
@@ -190,7 +196,8 @@ class HomePage extends GetView<RecipesController> {
                                   const Text(
                                     recipeContainerSummaryTitle,
                                     style: TextStyle(
-                                      fontSize: recipeContainerSummaryTitleFontSize,
+                                      fontSize:
+                                          recipeContainerSummaryTitleFontSize,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -198,7 +205,8 @@ class HomePage extends GetView<RecipesController> {
                                     data: recipes[index].summary,
                                     style: <String, Style>{
                                       htmlStyleTag: Style(
-                                        maxLines: recipeContainerSummaryMaxLines,
+                                        maxLines:
+                                            recipeContainerSummaryMaxLines,
                                         textOverflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.center,
                                       ),
@@ -206,12 +214,14 @@ class HomePage extends GetView<RecipesController> {
                                   ),
                                   const Padding(
                                     padding: EdgeInsets.symmetric(
-                                      vertical: recipeContainerTagsVerticalPadding,
+                                      vertical:
+                                          recipeContainerTagsVerticalPadding,
                                     ),
                                     child: Text(
                                       recipeContainerTagsTitle,
                                       style: TextStyle(
-                                        fontSize: recipeContainerTagsTitleFontSize,
+                                        fontSize:
+                                            recipeContainerTagsTitleFontSize,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -250,18 +260,22 @@ class HomePage extends GetView<RecipesController> {
                                 ],
                               ),
                             ),
+                            onTap: () => Get.toNamed(
+                              StringConstants.recipeDetailRoute,
+                              arguments: recipes[index],
+                            ),
                           );
                         },
                         options: CarouselOptions(
-                          viewportFraction: constraints.maxWidth <
-                                  Dimensions.mobileMaxWidth
-                              ? carouselViewportFractionMobile
-                              : constraints.maxWidth >
-                                          Dimensions.mobileMaxWidth &&
-                                      constraints.maxWidth <
-                                          Dimensions.tabletMaxWidth
-                                  ? carouselViewportFractionTablet
-                                  : carouselViewportFraction,
+                          viewportFraction:
+                              constraints.maxWidth < Dimensions.mobileMaxWidth
+                                  ? carouselViewportFractionMobile
+                                  : constraints.maxWidth >
+                                              Dimensions.mobileMaxWidth &&
+                                          constraints.maxWidth <
+                                              Dimensions.tabletMaxWidth
+                                      ? carouselViewportFractionTablet
+                                      : carouselViewportFraction,
                           enableInfiniteScroll: true,
                           height: Get.height,
                           scrollDirection:
@@ -274,10 +288,25 @@ class HomePage extends GetView<RecipesController> {
                   },
                   onLoading: Expanded(
                     child: Center(
-                      child: LottieBuilder.asset(
-                        Assets.loadingLottiePath,
-                        height: Get.height *
-                            Dimensions.loadingLottieHeightMultiplier,
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Container(
+                            height: Get.height * loaderBackgroundSizeMultiplier,
+                            width: Get.height * loaderBackgroundSizeMultiplier,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.withOpacity(
+                                Dimensions.containerBackgroundColorOpacity,
+                              ),
+                            ),
+                          ),
+                          LottieBuilder.asset(
+                            Assets.loadingLottiePath,
+                            height: Get.height *
+                                Dimensions.loadingLottieHeightMultiplier,
+                          ),
+                        ],
                       ),
                     ),
                   ),

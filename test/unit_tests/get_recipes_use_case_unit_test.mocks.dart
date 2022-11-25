@@ -6,7 +6,9 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:spoonacular/src/data/models/ingredient_model.dart' as _i5;
 import 'package:spoonacular/src/data/models/recipe_model.dart' as _i4;
+import 'package:spoonacular/src/data/models/similar_recipe_model.dart' as _i6;
 import 'package:spoonacular/src/data/repositories/recipes_repository.dart'
     as _i2;
 
@@ -40,4 +42,38 @@ class MockRecipesRepository extends _i1.Mock implements _i2.RecipesRepository {
         returnValue:
             _i3.Future<List<_i4.RecipeModel>>.value(<_i4.RecipeModel>[]),
       ) as _i3.Future<List<_i4.RecipeModel>>);
+  @override
+  _i3.Future<List<_i5.IngredientModel>> getRecipeIngredients(
+          {required String? endpoint}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRecipeIngredients,
+          [],
+          {#endpoint: endpoint},
+        ),
+        returnValue: _i3.Future<List<_i5.IngredientModel>>.value(
+            <_i5.IngredientModel>[]),
+      ) as _i3.Future<List<_i5.IngredientModel>>);
+  @override
+  _i3.Future<String> getRecipeNutritionLabel({required String? endpoint}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRecipeNutritionLabel,
+          [],
+          {#endpoint: endpoint},
+        ),
+        returnValue: _i3.Future<String>.value(''),
+      ) as _i3.Future<String>);
+  @override
+  _i3.Future<List<_i6.SimilarRecipeModel>> getSimilarRecipes(
+          {required String? endpoint}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getSimilarRecipes,
+          [],
+          {#endpoint: endpoint},
+        ),
+        returnValue: _i3.Future<List<_i6.SimilarRecipeModel>>.value(
+            <_i6.SimilarRecipeModel>[]),
+      ) as _i3.Future<List<_i6.SimilarRecipeModel>>);
 }
