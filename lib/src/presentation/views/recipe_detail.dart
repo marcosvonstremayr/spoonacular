@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../core/utils/assets_constants.dart';
 import '../../core/utils/service_constants.dart';
 import '../../core/utils/dimensions_constants.dart';
 import '../../core/utils/string_constants.dart';
-import '../../data/models/ingredient_model.dart';
 import '../../data/models/recipe_model.dart';
-import '../../data/models/similar_recipe_model.dart';
 import '../controllers/ingredients_controller.dart';
 import '../controllers/nutrition_label_controller.dart';
 import '../controllers/similar_recipes_controller.dart';
+import '../widgets/back_arrow_widget.dart';
 import '../widgets/custom_app_bar.dart';
+import '../widgets/ingredients_widget.dart';
+import '../widgets/loader_widget.dart';
+import '../widgets/nutrition_label_widget.dart';
+import '../widgets/similar_recipes_widget.dart';
+import '../widgets/stroke_title_widget.dart';
 
 class RecipeDetail extends StatefulWidget {
   const RecipeDetail({Key? key}) : super(key: key);
@@ -59,8 +62,16 @@ class _RecipeDetailState extends State<RecipeDetail> {
     super.initState();
   }
 
-  static const double backArrowMargin = 10;
-  static const double backArrowPadding = 15;
+  static const double titlePadding = 15;
+  static const double containerHorizontalPadding = 20;
+  static const double mainContainerBottomMargin = 20;
+  static const double mainContainerWebWidthMultiplier = 0.7;
+  static const double instructionsTopPadding = 30;
+  static const double instructionsContainerVerticalMargin = 5;
+  static const double instructionsContainerPadding = 5;
+
+  static const String ingredientsTitle = 'Ingredients';
+  static const String instructionsTitle = 'Instructions';
 
   @override
   Widget build(BuildContext context) {
@@ -86,337 +97,84 @@ class _RecipeDetailState extends State<RecipeDetail> {
                     width: Get.width,
                     child: Row(
                       children: [
-                        InkWell(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: backArrowMargin,
-                            ),
-                            padding: const EdgeInsets.all(backArrowPadding),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey.withOpacity(
-                                Dimensions.containerBackgroundColorOpacity,
-                              ),
-                            ),
-                            child: const Icon(Icons.arrow_back),
-                          ),
-                          onTap: () =>
-                              Get.offAllNamed(StringConstants.homeRoute),
-                        ),
+                        backArrow(),
                         const Expanded(child: CustomAppBar()),
                       ],
                     ),
                   ),
-                  Stack(
-                    children: [
-                      Text(
-                        recipe.title,
-                        style: TextStyle(
-                          fontSize: 40,
-                          foreground: Paint()
-                            ..style = PaintingStyle.stroke
-                            ..strokeWidth = 3
-                            ..color = Colors.black,
-                        ),
-                      ),
-                      Text(
-                        recipe.title,
-                        style: const TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: Get.height * 0.8,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
+                  Padding(
+                    padding: const EdgeInsets.all(titlePadding),
+                    child: strokeTitle(
+                      title: recipe.title,
+                      isMainTitle: true,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: containerHorizontalPadding,
+                    ),
+                    child: Wrap(
                       children: [
-                        SizedBox(
-                          width: Get.width * 0.7,
+                        Container(
+                          margin: const EdgeInsets.only(
+                            bottom: mainContainerBottomMargin,
+                          ),
+                          width:
+                              constraints.maxWidth > Dimensions.tabletMaxWidth
+                                  ? Get.width * mainContainerWebWidthMultiplier
+                                  : Get.width,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(bottom: 20),
-                                height: Get.height * 0.3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Text(
-                                          'Ingredients',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            foreground: Paint()
-                                              ..style = PaintingStyle.stroke
-                                              ..strokeWidth = 3
-                                              ..color = Colors.black,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                        const Text(
-                                          'Ingredients',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ],
-                                    ),
-                                    ingredientsController.obx(
-                                      (List<IngredientModel>? ingredients) {
-                                        return Expanded(
-                                          child: ListView.builder(
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: ingredients?.length,
-                                            itemBuilder: (
-                                              BuildContext context,
-                                              int index,
-                                            ) {
-                                              return Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    Dimensions
-                                                        .containerBorderRadius,
-                                                  ),
-                                                  color:
-                                                      Colors.grey.withOpacity(
-                                                    Dimensions
-                                                        .containerBackgroundColorOpacity,
-                                                  ),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black
-                                                          .withOpacity(
-                                                        0.5,
-                                                      ),
-                                                      spreadRadius: 3,
-                                                      blurRadius: 5,
-                                                    )
-                                                  ],
-                                                ),
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 10,
-                                                  vertical: 5,
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Container(
-                                                      width: Get.width * 0.1,
-                                                      height: Get.height * 0.15,
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                            'https://spoonacular.com/cdn/ingredients_500x500/${ingredients![index].image}',
-                                                          ),
-                                                          fit: BoxFit.fitHeight,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          Dimensions
-                                                              .containerBorderRadius,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      ingredients[index].name,
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
+                              strokeTitle(
+                                title: ingredientsTitle,
+                                isMainTitle: false,
+                              ),
+                              ingredientsWidget(
+                                controller: ingredientsController,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: instructionsTopPadding),
+                                child: strokeTitle(
+                                  title: instructionsTitle,
+                                  isMainTitle: false,
                                 ),
                               ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Text(
-                                          'Instructions',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            foreground: Paint()
-                                              ..style = PaintingStyle.stroke
-                                              ..strokeWidth = 3
-                                              ..color = Colors.black,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                        const Text(
-                                          'Instructions',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(
-                                        vertical: 5,
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: instructionsContainerVerticalMargin,
+                                ),
+                                padding: const EdgeInsets.all(instructionsContainerPadding),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    Dimensions.containerBorderRadius,
+                                  ),
+                                  color: Colors.grey.withOpacity(
+                                    Dimensions.containerBackgroundColorOpacity,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(
+                                        Dimensions.containerShadowOpacity,
                                       ),
-                                      padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          Dimensions.containerBorderRadius,
-                                        ),
-                                        color: Colors.grey.withOpacity(
-                                          Dimensions
-                                              .containerBackgroundColorOpacity,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(
-                                              0.5,
-                                            ),
-                                            spreadRadius: 3,
-                                            blurRadius: 5,
-                                          )
-                                        ],
-                                      ),
-                                      child: SingleChildScrollView(
-                                        child:
-                                            Html(data: recipe.instructions),
-                                      ),
+                                      spreadRadius: Dimensions.containerShadowSpread,
+                                      blurRadius: Dimensions.containerShadowBlur,
                                     ),
                                   ],
                                 ),
+                                child: Html(data: recipe.instructions),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          width: Get.width * 0.25,
-                          child: nutritionLabelController.obx((String? label) {
-                            return Html(
-                              data: label,
-                              shrinkWrap: true,
-                            );
-                          }),
-                        )
+                        nutritionLabel(
+                          controller: nutritionLabelController,
+                        ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: Get.height * 0.3,
-                    width: Get.width,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            Text(
-                              'Similar Recipes',
-                              style: TextStyle(
-                                fontSize: 30,
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 3
-                                  ..color = Colors.black,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                            const Text(
-                              'Similar Recipes',
-                              style: TextStyle(
-                                fontSize: 30,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                          ],
-                        ),
-                        similarRecipesController
-                            .obx((List<SimilarRecipeModel>? similarRecipes) {
-                          return Expanded(
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: similarRecipes?.length,
-                              itemBuilder: (
-                                BuildContext context,
-                                int index,
-                              ) {
-                                return Container(
-                                  width: Get.width * 0.2,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      Dimensions.containerBorderRadius,
-                                    ),
-                                    color: Colors.grey.withOpacity(
-                                      Dimensions
-                                          .containerBackgroundColorOpacity,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(
-                                          0.5,
-                                        ),
-                                        spreadRadius: 3,
-                                        blurRadius: 5,
-                                      )
-                                    ],
-                                  ),
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 5,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: Get.width * 0.2,
-                                        height: Get.height * 0.15,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              'https://spoonacular.com/recipeImages/${similarRecipes![index].id.toString()}-480x360.${similarRecipes[index].imageType}',
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                          borderRadius: BorderRadius.circular(
-                                            Dimensions.containerBorderRadius,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: AutoSizeText(
-                                          similarRecipes[index].title,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        }),
-                      ],
-                    ),
-                  )
+                  similarRecipes(controller: similarRecipesController),
                 ],
               );
             },

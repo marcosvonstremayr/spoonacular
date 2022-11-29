@@ -17,4 +17,5 @@ abstract class StringConstants {
   static const String nutritionLabelEndpoint = 'Nutrition Label';
   static const String similarRecipesEndpoint = 'Similar';
   static const String idReplacement = '{id}';
+  static const String errorMessage = 'We are having trouble right now, the error was: ';
 }

@@ -13,6 +13,7 @@ import '../controllers/recipes_controller.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/empty_widget.dart';
 import '../widgets/error_widget.dart';
+import '../widgets/loader_widget.dart';
 import '../widgets/tags_style.dart';
 
 class HomePage extends GetView<RecipesController> {
@@ -36,9 +37,6 @@ class HomePage extends GetView<RecipesController> {
   static const double recipeContainerTagsTitleFontSize = 22;
   static const double carouselViewportFraction = 0.45;
   static const double carouselViewportFractionMobile = 1;
-  static const double containerShadowOpacity = 0.5;
-  static const double containerShadowBlur = 5;
-  static const double containerShadowSpread = 3;
   static const double carouselViewportFractionTablet = 0.8;
   static const int expandedFlex = 2;
   static const double loaderBackgroundSizeMultiplier = 0.25;
@@ -111,10 +109,10 @@ class HomePage extends GetView<RecipesController> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(
-                                      containerShadowOpacity,
+                                      Dimensions.containerShadowOpacity,
                                     ),
-                                    spreadRadius: containerShadowSpread,
-                                    blurRadius: containerShadowBlur,
+                                    spreadRadius: Dimensions.containerShadowSpread,
+                                    blurRadius: Dimensions.containerShadowBlur,
                                   )
                                 ],
                               ),
@@ -287,31 +285,13 @@ class HomePage extends GetView<RecipesController> {
                     );
                   },
                   onLoading: Expanded(
-                    child: Center(
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: Get.height * loaderBackgroundSizeMultiplier,
-                            width: Get.height * loaderBackgroundSizeMultiplier,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey.withOpacity(
-                                Dimensions.containerBackgroundColorOpacity,
-                              ),
-                            ),
-                          ),
-                          LottieBuilder.asset(
-                            Assets.loadingLottiePath,
-                            height: Get.height *
-                                Dimensions.loadingLottieHeightMultiplier,
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: loaderWidget(size: loaderBackgroundSizeMultiplier),
                   ),
                   onEmpty: emptyWidget(context),
-                  onError: (String? error) => errorWidget(error!, context),
+                  onError: (String? error) => errorWidget(
+                    error!,
+                    context,
+                  ),
                 )
               ],
             );
