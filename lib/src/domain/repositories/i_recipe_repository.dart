@@ -7,4 +7,5 @@ abstract class IRecipesRepository {
   Future<List<SimilarRecipeModel>> getSimilarRecipes({required String endpoint});
   Future<String> getRecipeNutritionLabel({required String endpoint});
   Future<List<IngredientModel>> getRecipeIngredients({required String endpoint});
+  Future<RecipeModel> getRecipeInformation({required String endpoint});
 }

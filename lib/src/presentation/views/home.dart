@@ -128,7 +128,7 @@ class HomePage extends GetView<RecipesController> {
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                recipes[index].image,
+                                                recipes[index].image!,
                                               ),
                                               fit: BoxFit.cover,
                                             ),
@@ -145,7 +145,7 @@ class HomePage extends GetView<RecipesController> {
                                           child: Stack(
                                             children: <Widget>[
                                               Text(
-                                                recipes[index].title,
+                                                recipes[index].title ?? StringConstants.unknownRecipe,
                                                 style: TextStyle(
                                                   fontSize:
                                                       recipeContainerTitleFontSize,
@@ -158,7 +158,7 @@ class HomePage extends GetView<RecipesController> {
                                                 ),
                                               ),
                                               Text(
-                                                recipes[index].title,
+                                                recipes[index].title ?? StringConstants.unknownRecipe,
                                                 style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize:

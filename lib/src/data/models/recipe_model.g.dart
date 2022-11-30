@@ -18,31 +18,31 @@ _$_RecipeModel _$$_RecipeModelFromJson(Map<String, dynamic> json) =>
       sustainable: json['sustainable'] as bool,
       lowFodmap: json['lowFodmap'] as bool,
       weightWatcherSmartPoints: json['weightWatcherSmartPoints'] as int,
-      gaps: json['gaps'] as String,
+      gaps: json['gaps'] as String?,
       preparationMinutes: json['preparationMinutes'] as int,
       cookingMinutes: json['cookingMinutes'] as int,
       aggregateLikes: json['aggregateLikes'] as int,
       healthScore: json['healthScore'] as int,
-      creditsText: json['creditsText'] as String,
+      creditsText: json['creditsText'] as String?,
       license: json['license'] as String?,
-      sourceName: json['sourceName'] as String,
+      sourceName: json['sourceName'] as String?,
       pricePerServing: (json['pricePerServing'] as num).toDouble(),
-      extendedIngredients: (json['extendedIngredients'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
+      extendedIngredients: (json['extendedIngredients'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>?)
           .toList(),
       id: json['id'] as int,
-      title: json['title'] as String,
+      title: json['title'] as String?,
       readyInMinutes: json['readyInMinutes'] as int,
       servings: json['servings'] as int,
-      sourceUrl: json['sourceUrl'] as String,
-      image: json['image'] as String,
-      imageType: json['imageType'] as String,
-      summary: json['summary'] as String,
-      instructions: json['instructions'] as String,
-      analyzedInstructions: (json['analyzedInstructions'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
+      sourceUrl: json['sourceUrl'] as String?,
+      image: json['image'] as String?,
+      imageType: json['imageType'] as String?,
+      summary: json['summary'] as String?,
+      instructions: json['instructions'] as String?,
+      analyzedInstructions: (json['analyzedInstructions'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>?)
           .toList(),
-      spoonacularSourceUrl: json['spoonacularSourceUrl'] as String,
+      spoonacularSourceUrl: json['spoonacularSourceUrl'] as String?,
       cuisines:
           (json['cuisines'] as List<dynamic>).map((e) => e as String?).toList(),
       dishTypes: (json['dishTypes'] as List<dynamic>)

@@ -30,29 +30,29 @@ mixin _$RecipeModel {
   bool get sustainable => throw _privateConstructorUsedError;
   bool get lowFodmap => throw _privateConstructorUsedError;
   int get weightWatcherSmartPoints => throw _privateConstructorUsedError;
-  String get gaps => throw _privateConstructorUsedError;
+  String? get gaps => throw _privateConstructorUsedError;
   int get preparationMinutes => throw _privateConstructorUsedError;
   int get cookingMinutes => throw _privateConstructorUsedError;
   int get aggregateLikes => throw _privateConstructorUsedError;
   int get healthScore => throw _privateConstructorUsedError;
-  String get creditsText => throw _privateConstructorUsedError;
+  String? get creditsText => throw _privateConstructorUsedError;
   String? get license => throw _privateConstructorUsedError;
-  String get sourceName => throw _privateConstructorUsedError;
+  String? get sourceName => throw _privateConstructorUsedError;
   double get pricePerServing => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get extendedIngredients =>
+  List<Map<String, dynamic>?>? get extendedIngredients =>
       throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   int get readyInMinutes => throw _privateConstructorUsedError;
   int get servings => throw _privateConstructorUsedError;
-  String get sourceUrl => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String get imageType => throw _privateConstructorUsedError;
-  String get summary => throw _privateConstructorUsedError;
-  String get instructions => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get analyzedInstructions =>
+  String? get sourceUrl => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get imageType => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
+  String? get instructions => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>?>? get analyzedInstructions =>
       throw _privateConstructorUsedError;
-  String get spoonacularSourceUrl => throw _privateConstructorUsedError;
+  String? get spoonacularSourceUrl => throw _privateConstructorUsedError;
   List<String?> get cuisines => throw _privateConstructorUsedError;
   List<String?> get dishTypes => throw _privateConstructorUsedError;
   List<String?> get diets => throw _privateConstructorUsedError;
@@ -82,27 +82,27 @@ abstract class $RecipeModelCopyWith<$Res> {
       bool sustainable,
       bool lowFodmap,
       int weightWatcherSmartPoints,
-      String gaps,
+      String? gaps,
       int preparationMinutes,
       int cookingMinutes,
       int aggregateLikes,
       int healthScore,
-      String creditsText,
+      String? creditsText,
       String? license,
-      String sourceName,
+      String? sourceName,
       double pricePerServing,
-      List<Map<String, dynamic>> extendedIngredients,
+      List<Map<String, dynamic>?>? extendedIngredients,
       int id,
-      String title,
+      String? title,
       int readyInMinutes,
       int servings,
-      String sourceUrl,
-      String image,
-      String imageType,
-      String summary,
-      String instructions,
-      List<Map<String, dynamic>> analyzedInstructions,
-      String spoonacularSourceUrl,
+      String? sourceUrl,
+      String? image,
+      String? imageType,
+      String? summary,
+      String? instructions,
+      List<Map<String, dynamic>?>? analyzedInstructions,
+      String? spoonacularSourceUrl,
       List<String?> cuisines,
       List<String?> dishTypes,
       List<String?> diets,
@@ -133,27 +133,27 @@ class _$RecipeModelCopyWithImpl<$Res, $Val extends RecipeModel>
     Object? sustainable = null,
     Object? lowFodmap = null,
     Object? weightWatcherSmartPoints = null,
-    Object? gaps = null,
+    Object? gaps = freezed,
     Object? preparationMinutes = null,
     Object? cookingMinutes = null,
     Object? aggregateLikes = null,
     Object? healthScore = null,
-    Object? creditsText = null,
+    Object? creditsText = freezed,
     Object? license = freezed,
-    Object? sourceName = null,
+    Object? sourceName = freezed,
     Object? pricePerServing = null,
-    Object? extendedIngredients = null,
+    Object? extendedIngredients = freezed,
     Object? id = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? readyInMinutes = null,
     Object? servings = null,
-    Object? sourceUrl = null,
-    Object? image = null,
-    Object? imageType = null,
-    Object? summary = null,
-    Object? instructions = null,
-    Object? analyzedInstructions = null,
-    Object? spoonacularSourceUrl = null,
+    Object? sourceUrl = freezed,
+    Object? image = freezed,
+    Object? imageType = freezed,
+    Object? summary = freezed,
+    Object? instructions = freezed,
+    Object? analyzedInstructions = freezed,
+    Object? spoonacularSourceUrl = freezed,
     Object? cuisines = null,
     Object? dishTypes = null,
     Object? diets = null,
@@ -201,10 +201,10 @@ class _$RecipeModelCopyWithImpl<$Res, $Val extends RecipeModel>
           ? _value.weightWatcherSmartPoints
           : weightWatcherSmartPoints // ignore: cast_nullable_to_non_nullable
               as int,
-      gaps: null == gaps
+      gaps: freezed == gaps
           ? _value.gaps
           : gaps // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
           : preparationMinutes // ignore: cast_nullable_to_non_nullable
@@ -221,34 +221,34 @@ class _$RecipeModelCopyWithImpl<$Res, $Val extends RecipeModel>
           ? _value.healthScore
           : healthScore // ignore: cast_nullable_to_non_nullable
               as int,
-      creditsText: null == creditsText
+      creditsText: freezed == creditsText
           ? _value.creditsText
           : creditsText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       license: freezed == license
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
               as String?,
-      sourceName: null == sourceName
+      sourceName: freezed == sourceName
           ? _value.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       pricePerServing: null == pricePerServing
           ? _value.pricePerServing
           : pricePerServing // ignore: cast_nullable_to_non_nullable
               as double,
-      extendedIngredients: null == extendedIngredients
+      extendedIngredients: freezed == extendedIngredients
           ? _value.extendedIngredients
           : extendedIngredients // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<Map<String, dynamic>?>?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       readyInMinutes: null == readyInMinutes
           ? _value.readyInMinutes
           : readyInMinutes // ignore: cast_nullable_to_non_nullable
@@ -257,34 +257,34 @@ class _$RecipeModelCopyWithImpl<$Res, $Val extends RecipeModel>
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
               as int,
-      sourceUrl: null == sourceUrl
+      sourceUrl: freezed == sourceUrl
           ? _value.sourceUrl
           : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageType: null == imageType
+              as String?,
+      imageType: freezed == imageType
           ? _value.imageType
           : imageType // ignore: cast_nullable_to_non_nullable
-              as String,
-      summary: null == summary
+              as String?,
+      summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
-      instructions: null == instructions
+              as String?,
+      instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
-              as String,
-      analyzedInstructions: null == analyzedInstructions
+              as String?,
+      analyzedInstructions: freezed == analyzedInstructions
           ? _value.analyzedInstructions
           : analyzedInstructions // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      spoonacularSourceUrl: null == spoonacularSourceUrl
+              as List<Map<String, dynamic>?>?,
+      spoonacularSourceUrl: freezed == spoonacularSourceUrl
           ? _value.spoonacularSourceUrl
           : spoonacularSourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       cuisines: null == cuisines
           ? _value.cuisines
           : cuisines // ignore: cast_nullable_to_non_nullable
@@ -328,27 +328,27 @@ abstract class _$$_RecipeModelCopyWith<$Res>
       bool sustainable,
       bool lowFodmap,
       int weightWatcherSmartPoints,
-      String gaps,
+      String? gaps,
       int preparationMinutes,
       int cookingMinutes,
       int aggregateLikes,
       int healthScore,
-      String creditsText,
+      String? creditsText,
       String? license,
-      String sourceName,
+      String? sourceName,
       double pricePerServing,
-      List<Map<String, dynamic>> extendedIngredients,
+      List<Map<String, dynamic>?>? extendedIngredients,
       int id,
-      String title,
+      String? title,
       int readyInMinutes,
       int servings,
-      String sourceUrl,
-      String image,
-      String imageType,
-      String summary,
-      String instructions,
-      List<Map<String, dynamic>> analyzedInstructions,
-      String spoonacularSourceUrl,
+      String? sourceUrl,
+      String? image,
+      String? imageType,
+      String? summary,
+      String? instructions,
+      List<Map<String, dynamic>?>? analyzedInstructions,
+      String? spoonacularSourceUrl,
       List<String?> cuisines,
       List<String?> dishTypes,
       List<String?> diets,
@@ -377,27 +377,27 @@ class __$$_RecipeModelCopyWithImpl<$Res>
     Object? sustainable = null,
     Object? lowFodmap = null,
     Object? weightWatcherSmartPoints = null,
-    Object? gaps = null,
+    Object? gaps = freezed,
     Object? preparationMinutes = null,
     Object? cookingMinutes = null,
     Object? aggregateLikes = null,
     Object? healthScore = null,
-    Object? creditsText = null,
+    Object? creditsText = freezed,
     Object? license = freezed,
-    Object? sourceName = null,
+    Object? sourceName = freezed,
     Object? pricePerServing = null,
-    Object? extendedIngredients = null,
+    Object? extendedIngredients = freezed,
     Object? id = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? readyInMinutes = null,
     Object? servings = null,
-    Object? sourceUrl = null,
-    Object? image = null,
-    Object? imageType = null,
-    Object? summary = null,
-    Object? instructions = null,
-    Object? analyzedInstructions = null,
-    Object? spoonacularSourceUrl = null,
+    Object? sourceUrl = freezed,
+    Object? image = freezed,
+    Object? imageType = freezed,
+    Object? summary = freezed,
+    Object? instructions = freezed,
+    Object? analyzedInstructions = freezed,
+    Object? spoonacularSourceUrl = freezed,
     Object? cuisines = null,
     Object? dishTypes = null,
     Object? diets = null,
@@ -445,10 +445,10 @@ class __$$_RecipeModelCopyWithImpl<$Res>
           ? _value.weightWatcherSmartPoints
           : weightWatcherSmartPoints // ignore: cast_nullable_to_non_nullable
               as int,
-      gaps: null == gaps
+      gaps: freezed == gaps
           ? _value.gaps
           : gaps // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
           : preparationMinutes // ignore: cast_nullable_to_non_nullable
@@ -465,34 +465,34 @@ class __$$_RecipeModelCopyWithImpl<$Res>
           ? _value.healthScore
           : healthScore // ignore: cast_nullable_to_non_nullable
               as int,
-      creditsText: null == creditsText
+      creditsText: freezed == creditsText
           ? _value.creditsText
           : creditsText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       license: freezed == license
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
               as String?,
-      sourceName: null == sourceName
+      sourceName: freezed == sourceName
           ? _value.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       pricePerServing: null == pricePerServing
           ? _value.pricePerServing
           : pricePerServing // ignore: cast_nullable_to_non_nullable
               as double,
-      extendedIngredients: null == extendedIngredients
+      extendedIngredients: freezed == extendedIngredients
           ? _value._extendedIngredients
           : extendedIngredients // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<Map<String, dynamic>?>?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       readyInMinutes: null == readyInMinutes
           ? _value.readyInMinutes
           : readyInMinutes // ignore: cast_nullable_to_non_nullable
@@ -501,34 +501,34 @@ class __$$_RecipeModelCopyWithImpl<$Res>
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
               as int,
-      sourceUrl: null == sourceUrl
+      sourceUrl: freezed == sourceUrl
           ? _value.sourceUrl
           : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageType: null == imageType
+              as String?,
+      imageType: freezed == imageType
           ? _value.imageType
           : imageType // ignore: cast_nullable_to_non_nullable
-              as String,
-      summary: null == summary
+              as String?,
+      summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
-      instructions: null == instructions
+              as String?,
+      instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
-              as String,
-      analyzedInstructions: null == analyzedInstructions
+              as String?,
+      analyzedInstructions: freezed == analyzedInstructions
           ? _value._analyzedInstructions
           : analyzedInstructions // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      spoonacularSourceUrl: null == spoonacularSourceUrl
+              as List<Map<String, dynamic>?>?,
+      spoonacularSourceUrl: freezed == spoonacularSourceUrl
           ? _value.spoonacularSourceUrl
           : spoonacularSourceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       cuisines: null == cuisines
           ? _value._cuisines
           : cuisines // ignore: cast_nullable_to_non_nullable
@@ -567,27 +567,27 @@ class _$_RecipeModel extends _RecipeModel {
       required this.sustainable,
       required this.lowFodmap,
       required this.weightWatcherSmartPoints,
-      required this.gaps,
+      this.gaps,
       required this.preparationMinutes,
       required this.cookingMinutes,
       required this.aggregateLikes,
       required this.healthScore,
-      required this.creditsText,
+      this.creditsText,
       this.license,
-      required this.sourceName,
+      this.sourceName,
       required this.pricePerServing,
-      required final List<Map<String, dynamic>> extendedIngredients,
+      final List<Map<String, dynamic>?>? extendedIngredients,
       required this.id,
-      required this.title,
+      this.title,
       required this.readyInMinutes,
       required this.servings,
-      required this.sourceUrl,
-      required this.image,
-      required this.imageType,
-      required this.summary,
-      required this.instructions,
-      required final List<Map<String, dynamic>> analyzedInstructions,
-      required this.spoonacularSourceUrl,
+      this.sourceUrl,
+      this.image,
+      this.imageType,
+      this.summary,
+      this.instructions,
+      final List<Map<String, dynamic>?>? analyzedInstructions,
+      this.spoonacularSourceUrl,
       required final List<String?> cuisines,
       required final List<String?> dishTypes,
       required final List<String?> diets,
@@ -625,7 +625,7 @@ class _$_RecipeModel extends _RecipeModel {
   @override
   final int weightWatcherSmartPoints;
   @override
-  final String gaps;
+  final String? gaps;
   @override
   final int preparationMinutes;
   @override
@@ -635,47 +635,51 @@ class _$_RecipeModel extends _RecipeModel {
   @override
   final int healthScore;
   @override
-  final String creditsText;
+  final String? creditsText;
   @override
   final String? license;
   @override
-  final String sourceName;
+  final String? sourceName;
   @override
   final double pricePerServing;
-  final List<Map<String, dynamic>> _extendedIngredients;
+  final List<Map<String, dynamic>?>? _extendedIngredients;
   @override
-  List<Map<String, dynamic>> get extendedIngredients {
+  List<Map<String, dynamic>?>? get extendedIngredients {
+    final value = _extendedIngredients;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_extendedIngredients);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   final int id;
   @override
-  final String title;
+  final String? title;
   @override
   final int readyInMinutes;
   @override
   final int servings;
   @override
-  final String sourceUrl;
+  final String? sourceUrl;
   @override
-  final String image;
+  final String? image;
   @override
-  final String imageType;
+  final String? imageType;
   @override
-  final String summary;
+  final String? summary;
   @override
-  final String instructions;
-  final List<Map<String, dynamic>> _analyzedInstructions;
+  final String? instructions;
+  final List<Map<String, dynamic>?>? _analyzedInstructions;
   @override
-  List<Map<String, dynamic>> get analyzedInstructions {
+  List<Map<String, dynamic>?>? get analyzedInstructions {
+    final value = _analyzedInstructions;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_analyzedInstructions);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String spoonacularSourceUrl;
+  final String? spoonacularSourceUrl;
   final List<String?> _cuisines;
   @override
   List<String?> get cuisines {
@@ -850,27 +854,27 @@ abstract class _RecipeModel extends RecipeModel {
       required final bool sustainable,
       required final bool lowFodmap,
       required final int weightWatcherSmartPoints,
-      required final String gaps,
+      final String? gaps,
       required final int preparationMinutes,
       required final int cookingMinutes,
       required final int aggregateLikes,
       required final int healthScore,
-      required final String creditsText,
+      final String? creditsText,
       final String? license,
-      required final String sourceName,
+      final String? sourceName,
       required final double pricePerServing,
-      required final List<Map<String, dynamic>> extendedIngredients,
+      final List<Map<String, dynamic>?>? extendedIngredients,
       required final int id,
-      required final String title,
+      final String? title,
       required final int readyInMinutes,
       required final int servings,
-      required final String sourceUrl,
-      required final String image,
-      required final String imageType,
-      required final String summary,
-      required final String instructions,
-      required final List<Map<String, dynamic>> analyzedInstructions,
-      required final String spoonacularSourceUrl,
+      final String? sourceUrl,
+      final String? image,
+      final String? imageType,
+      final String? summary,
+      final String? instructions,
+      final List<Map<String, dynamic>?>? analyzedInstructions,
+      final String? spoonacularSourceUrl,
       required final List<String?> cuisines,
       required final List<String?> dishTypes,
       required final List<String?> diets,
@@ -902,7 +906,7 @@ abstract class _RecipeModel extends RecipeModel {
   @override
   int get weightWatcherSmartPoints;
   @override
-  String get gaps;
+  String? get gaps;
   @override
   int get preparationMinutes;
   @override
@@ -912,37 +916,37 @@ abstract class _RecipeModel extends RecipeModel {
   @override
   int get healthScore;
   @override
-  String get creditsText;
+  String? get creditsText;
   @override
   String? get license;
   @override
-  String get sourceName;
+  String? get sourceName;
   @override
   double get pricePerServing;
   @override
-  List<Map<String, dynamic>> get extendedIngredients;
+  List<Map<String, dynamic>?>? get extendedIngredients;
   @override
   int get id;
   @override
-  String get title;
+  String? get title;
   @override
   int get readyInMinutes;
   @override
   int get servings;
   @override
-  String get sourceUrl;
+  String? get sourceUrl;
   @override
-  String get image;
+  String? get image;
   @override
-  String get imageType;
+  String? get imageType;
   @override
-  String get summary;
+  String? get summary;
   @override
-  String get instructions;
+  String? get instructions;
   @override
-  List<Map<String, dynamic>> get analyzedInstructions;
+  List<Map<String, dynamic>?>? get analyzedInstructions;
   @override
-  String get spoonacularSourceUrl;
+  String? get spoonacularSourceUrl;
   @override
   List<String?> get cuisines;
   @override

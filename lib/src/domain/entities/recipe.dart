@@ -9,32 +9,32 @@ class Recipe {
   final bool sustainable;
   final bool lowFodmap;
   final int weightWatcherSmartPoints;
-  final String gaps;
+  final String? gaps;
   final int preparationMinutes;
   final int cookingMinutes;
   final int aggregateLikes;
   final int healthScore;
-  final String creditsText;
+  final String? creditsText;
   final String? license;
-  final String sourceName;
+  final String? sourceName;
   final double pricePerServing;
-  final List<Map<String, dynamic>> extendedIngredients;
+  final List<Map<String, dynamic>?>? extendedIngredients;
   final int id;
-  final String title;
+  final String? title;
   final int readyInMinutes;
   final int servings;
-  final String sourceUrl;
-  final String image;
-  final String imageType;
-  final String summary;
+  final String? sourceUrl;
+  final String? image;
+  final String? imageType;
+  final String? summary;
   final List<String?> cuisines;
   final List<String?> dishTypes;
   final List<String?> diets;
   final List<String?> occasions;
-  final String instructions;
-  final List<Map<String, dynamic>> analyzedInstructions;
+  final String? instructions;
+  final List<Map<String, dynamic>?>? analyzedInstructions;
   final int? originalId;
-  final String spoonacularSourceUrl;
+  final String? spoonacularSourceUrl;
 
   Recipe({
     required this.vegetarian,
@@ -47,27 +47,27 @@ class Recipe {
     required this.sustainable,
     required this.lowFodmap,
     required this.weightWatcherSmartPoints,
-    required this.gaps,
+    this.gaps,
     required this.preparationMinutes,
     required this.cookingMinutes,
     required this.aggregateLikes,
     required this.healthScore,
-    required this.creditsText,
+    this.creditsText,
     this.license,
-    required this.sourceName,
+    this.sourceName,
     required this.pricePerServing,
-    required this.extendedIngredients,
+    this.extendedIngredients,
     required this.id,
-    required this.title,
+    this.title,
     required this.readyInMinutes,
     required this.servings,
-    required this.sourceUrl,
-    required this.image,
-    required this.imageType,
-    required this.summary,
-    required this.instructions,
-    required this.analyzedInstructions,
-    required this.spoonacularSourceUrl,
+    this.sourceUrl,
+    this.image,
+    this.imageType,
+    this.summary,
+    this.instructions,
+    this.analyzedInstructions,
+    this.spoonacularSourceUrl,
     required this.cuisines,
     required this.dishTypes,
     required this.diets,

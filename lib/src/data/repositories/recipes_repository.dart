@@ -51,8 +51,9 @@ class RecipesRepository implements IRecipesRepository {
   }
 
   @override
-  Future<List<SimilarRecipeModel>> getSimilarRecipes(
-      {required String endpoint}) async {
+  Future<List<SimilarRecipeModel>> getSimilarRecipes({
+    required String endpoint,
+  }) async {
     List<SimilarRecipeModel> similarRecipes = <SimilarRecipeModel>[];
     Response<dynamic> apiResponse =
         await _apiService.getApiResponse(endpoint: endpoint);
@@ -65,5 +66,19 @@ class RecipesRepository implements IRecipesRepository {
       }
     }
     return similarRecipes;
+  }
+
+  @override
+  Future<RecipeModel> getRecipeInformation({required String endpoint}) async {
+    late RecipeModel recipe;
+    Response<dynamic> apiResponse =
+        await _apiService.getApiResponse(endpoint: endpoint);
+    Map<String, dynamic> recipeJson = apiResponse.data;
+    try {
+      recipe = RecipeModel.fromJson(recipeJson);
+    } catch (e) {
+      throw Exception(e);
+    }
+    return recipe;
   }
 }

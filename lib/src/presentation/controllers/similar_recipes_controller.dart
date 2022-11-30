@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 
 import '../../core/controller/i_similar_recipes_controller.dart';
+import '../../data/models/recipe_model.dart';
 import '../../data/models/similar_recipe_model.dart';
+import '../../domain/usecases/get_recipe_information_usecase.dart';
 import '../../domain/usecases/get_similar_recipes_usecase.dart';
 
 
@@ -11,6 +13,8 @@ class SimilarRecipesController extends GetxController
 
   final GetSimilarRecipesUseCase _getSimilarRecipesUseCase = Get.find<
       GetSimilarRecipesUseCase>();
+  final GetRecipeInformationUseCase _getRecipeInformationUseCase = Get.find<
+      GetRecipeInformationUseCase>();
 
   RxList<SimilarRecipeModel> similarRecipes = RxList<SimilarRecipeModel>();
 
@@ -40,5 +44,10 @@ class SimilarRecipesController extends GetxController
         status: RxStatus.error('$e'),
       );
     }
+  }
+
+  @override
+  Future<RecipeModel> getRecipeInformation({required String endpoint}) async {
+    return await _getRecipeInformationUseCase(params: endpoint);
   }
 }

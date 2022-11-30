@@ -6,6 +6,7 @@ import '../data/datasources/remote/api_service.dart';
 import '../data/repositories/recipes_repository.dart';
 import '../domain/usecases/get_ingredients_usecase.dart';
 import '../domain/usecases/get_nutrition_label_usecase.dart';
+import '../domain/usecases/get_recipe_information_usecase.dart';
 import '../domain/usecases/get_recipes_usecase.dart';
 import '../domain/usecases/get_similar_recipes_usecase.dart';
 import '../presentation/controllers/ingredients_controller.dart';
@@ -29,12 +30,13 @@ class Dependencies {
     Get.put(GetSimilarRecipesUseCase());
     Get.put(GetIngredientsUseCase());
     Get.put(GetNutritionLabelUseCase());
+    Get.put(GetRecipeInformationUseCase());
     Get.lazyPut(
       () => RecipesController()
         ..getRandomRecipes(endpoint: ServiceConstants.endpoints['Random']!),
     );
-    Get.lazyPut(() => IngredientsController());
-    Get.lazyPut(() => NutritionLabelController());
-    Get.lazyPut(() => SimilarRecipesController());
+    Get.put(IngredientsController());
+    Get.put(NutritionLabelController());
+    Get.put(SimilarRecipesController());
   }
 }

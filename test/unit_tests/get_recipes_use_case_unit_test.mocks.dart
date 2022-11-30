@@ -3,14 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:spoonacular/src/data/models/ingredient_model.dart' as _i5;
-import 'package:spoonacular/src/data/models/recipe_model.dart' as _i4;
+import 'package:spoonacular/src/data/models/recipe_model.dart' as _i2;
 import 'package:spoonacular/src/data/models/similar_recipe_model.dart' as _i6;
 import 'package:spoonacular/src/data/repositories/recipes_repository.dart'
-    as _i2;
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,16 +23,26 @@ import 'package:spoonacular/src/data/repositories/recipes_repository.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeRecipeModel_0 extends _i1.SmartFake implements _i2.RecipeModel {
+  _FakeRecipeModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [RecipesRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRecipesRepository extends _i1.Mock implements _i2.RecipesRepository {
+class MockRecipesRepository extends _i1.Mock implements _i3.RecipesRepository {
   MockRecipesRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.RecipeModel>> getRecipes({required String? endpoint}) =>
+  _i4.Future<List<_i2.RecipeModel>> getRecipes({required String? endpoint}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getRecipes,
@@ -40,10 +50,10 @@ class MockRecipesRepository extends _i1.Mock implements _i2.RecipesRepository {
           {#endpoint: endpoint},
         ),
         returnValue:
-            _i3.Future<List<_i4.RecipeModel>>.value(<_i4.RecipeModel>[]),
-      ) as _i3.Future<List<_i4.RecipeModel>>);
+            _i4.Future<List<_i2.RecipeModel>>.value(<_i2.RecipeModel>[]),
+      ) as _i4.Future<List<_i2.RecipeModel>>);
   @override
-  _i3.Future<List<_i5.IngredientModel>> getRecipeIngredients(
+  _i4.Future<List<_i5.IngredientModel>> getRecipeIngredients(
           {required String? endpoint}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -51,21 +61,21 @@ class MockRecipesRepository extends _i1.Mock implements _i2.RecipesRepository {
           [],
           {#endpoint: endpoint},
         ),
-        returnValue: _i3.Future<List<_i5.IngredientModel>>.value(
+        returnValue: _i4.Future<List<_i5.IngredientModel>>.value(
             <_i5.IngredientModel>[]),
-      ) as _i3.Future<List<_i5.IngredientModel>>);
+      ) as _i4.Future<List<_i5.IngredientModel>>);
   @override
-  _i3.Future<String> getRecipeNutritionLabel({required String? endpoint}) =>
+  _i4.Future<String> getRecipeNutritionLabel({required String? endpoint}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getRecipeNutritionLabel,
           [],
           {#endpoint: endpoint},
         ),
-        returnValue: _i3.Future<String>.value(''),
-      ) as _i3.Future<String>);
+        returnValue: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
   @override
-  _i3.Future<List<_i6.SimilarRecipeModel>> getSimilarRecipes(
+  _i4.Future<List<_i6.SimilarRecipeModel>> getSimilarRecipes(
           {required String? endpoint}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -73,7 +83,25 @@ class MockRecipesRepository extends _i1.Mock implements _i2.RecipesRepository {
           [],
           {#endpoint: endpoint},
         ),
-        returnValue: _i3.Future<List<_i6.SimilarRecipeModel>>.value(
+        returnValue: _i4.Future<List<_i6.SimilarRecipeModel>>.value(
             <_i6.SimilarRecipeModel>[]),
-      ) as _i3.Future<List<_i6.SimilarRecipeModel>>);
+      ) as _i4.Future<List<_i6.SimilarRecipeModel>>);
+  @override
+  _i4.Future<_i2.RecipeModel> getRecipeInformation(
+          {required String? endpoint}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRecipeInformation,
+          [],
+          {#endpoint: endpoint},
+        ),
+        returnValue: _i4.Future<_i2.RecipeModel>.value(_FakeRecipeModel_0(
+          this,
+          Invocation.method(
+            #getRecipeInformation,
+            [],
+            {#endpoint: endpoint},
+          ),
+        )),
+      ) as _i4.Future<_i2.RecipeModel>);
 }

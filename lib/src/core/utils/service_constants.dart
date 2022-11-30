@@ -6,9 +6,10 @@ abstract class ServiceConstants {
     'Random': '/recipes/random?number=10',
     'Similar': '/recipes/{id}/similar',
     'Nutrition Label': '/recipes/{id}/nutritionLabel',
-    'Ingredients': '/recipes/{id}/ingredientWidget.json'
+    'Ingredients': '/recipes/{id}/ingredientWidget.json',
+    'Recipe': '/recipes/{id}/information',
   };
-  static const Map<String, dynamic> auth = <String, dynamic> {
+  static const Map<String, dynamic> auth = <String, dynamic>{
     'x-api-key': apiKey,
   };
 }

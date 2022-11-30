@@ -13,7 +13,7 @@ import '../controllers/similar_recipes_controller.dart';
 import '../widgets/back_arrow_widget.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/ingredients_widget.dart';
-import '../widgets/loader_widget.dart';
+import '../widgets/likes_widget.dart';
 import '../widgets/nutrition_label_widget.dart';
 import '../widgets/similar_recipes_widget.dart';
 import '../widgets/stroke_title_widget.dart';
@@ -36,29 +36,32 @@ class _RecipeDetailState extends State<RecipeDetail> {
 
   @override
   void initState() {
-    ingredientsController.getRecipeIngredients(
-      endpoint: ServiceConstants.endpoints[StringConstants.ingredientsEndpoint]!
-          .replaceAll(
-        StringConstants.idReplacement,
-        recipe.id.toString(),
-      ),
-    );
-    nutritionLabelController.getRecipeNutritionLabel(
-      endpoint: ServiceConstants
-          .endpoints[StringConstants.nutritionLabelEndpoint]!
-          .replaceAll(
-        StringConstants.idReplacement,
-        recipe.id.toString(),
-      ),
-    );
-    similarRecipesController.getSimilarRecipes(
-      endpoint: ServiceConstants
-          .endpoints[StringConstants.similarRecipesEndpoint]!
-          .replaceAll(
-        StringConstants.idReplacement,
-        recipe.id.toString(),
-      ),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ingredientsController.getRecipeIngredients(
+        endpoint: ServiceConstants
+            .endpoints[StringConstants.ingredientsEndpoint]!
+            .replaceAll(
+          StringConstants.idReplacement,
+          recipe.id.toString(),
+        ),
+      );
+      nutritionLabelController.getRecipeNutritionLabel(
+        endpoint: ServiceConstants
+            .endpoints[StringConstants.nutritionLabelEndpoint]!
+            .replaceAll(
+          StringConstants.idReplacement,
+          recipe.id.toString(),
+        ),
+      );
+      similarRecipesController.getSimilarRecipes(
+        endpoint: ServiceConstants
+            .endpoints[StringConstants.similarRecipesEndpoint]!
+            .replaceAll(
+          StringConstants.idReplacement,
+          recipe.id.toString(),
+        ),
+      );
+    });
     super.initState();
   }
 
@@ -99,13 +102,14 @@ class _RecipeDetailState extends State<RecipeDetail> {
                       children: [
                         backArrow(),
                         const Expanded(child: CustomAppBar()),
+                        likesWidget(likes: recipe.aggregateLikes),
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(titlePadding),
                     child: strokeTitle(
-                      title: recipe.title,
+                      title: recipe.title!,
                       isMainTitle: true,
                     ),
                   ),
@@ -135,7 +139,9 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                 controller: ingredientsController,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: instructionsTopPadding),
+                                padding: const EdgeInsets.only(
+                                  top: instructionsTopPadding,
+                                ),
                                 child: strokeTitle(
                                   title: instructionsTitle,
                                   isMainTitle: false,
@@ -145,7 +151,9 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                 margin: const EdgeInsets.symmetric(
                                   vertical: instructionsContainerVerticalMargin,
                                 ),
-                                padding: const EdgeInsets.all(instructionsContainerPadding),
+                                padding: const EdgeInsets.all(
+                                  instructionsContainerPadding,
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                     Dimensions.containerBorderRadius,
@@ -158,8 +166,10 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                       color: Colors.black.withOpacity(
                                         Dimensions.containerShadowOpacity,
                                       ),
-                                      spreadRadius: Dimensions.containerShadowSpread,
-                                      blurRadius: Dimensions.containerShadowBlur,
+                                      spreadRadius:
+                                          Dimensions.containerShadowSpread,
+                                      blurRadius:
+                                          Dimensions.containerShadowBlur,
                                     ),
                                   ],
                                 ),
@@ -174,7 +184,9 @@ class _RecipeDetailState extends State<RecipeDetail> {
                       ],
                     ),
                   ),
-                  similarRecipes(controller: similarRecipesController),
+                  similarRecipes(
+                    controller: similarRecipesController,
+                  ),
                 ],
               );
             },
